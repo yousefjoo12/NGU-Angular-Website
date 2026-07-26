@@ -1,0 +1,34 @@
+.school-card{
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all .35s ease;
+}
+
+.school-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0,0,0,.15)!important;
+}
+
+.school-image{
+    height: 230px;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.school-card:hover .school-image{
+    transform: scale(1.05);
+}
+
+.card-title{
+    color:#0d6efd;
+}
+
+.card-text{
+    font-size:15px;
+    line-height:1.7;
+}
+
+.btn-primary{
+    border-radius:10px;
+}

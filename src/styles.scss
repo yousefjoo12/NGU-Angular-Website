@@ -1,0 +1,24 @@
+@use './styles/variables' as *;
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: $bg-light;
+    color: $text-dark;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+button,
+.btn,
+.counter,
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+}

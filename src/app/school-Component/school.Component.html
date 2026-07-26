@@ -1,0 +1,63 @@
+<!-- ============ HERO ============ -->
+<section class="school-hero" *ngIf="activeSection as heroSection">
+  <div class="school-hero__pattern"></div>
+  <div class="container school-hero__inner">
+    <p class="school-hero__eyebrow">Academics</p>
+    <h1 class="school-hero__title">{{ heroSection.school }}</h1>
+    <nav class="school-hero__crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a>
+      <span class="divider">/</span>
+      <a routerLink="/about">Academics</a>
+      <span class="divider">/</span>
+      <span class="current">{{ heroSection.school }}</span>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ LOADING ============ -->
+<div class="state-panel" *ngIf="loading">
+  <div class="spinner" role="status" aria-label="Loading"></div>
+  <p>Loading school information…</p>
+</div>
+
+<!-- ============ ERROR ============ -->
+<div class="state-panel state-panel--error" *ngIf="!loading && errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<!-- ============ BODY ============ -->
+<div class="container school-body" *ngIf="!loading && !errorMessage && activeSection as current">
+  <div class="row gx-4 gx-lg-5">
+    <!-- Section rail -->
+    <aside class="col-12 col-lg-3">
+      <nav class="section-rail" aria-label="School sections">
+        <span class="section-rail__label">On this page</span>
+        <ul>
+          <li *ngFor="let section of sections; trackBy: trackBySectionId">
+            <button
+              type="button"
+              class="section-rail__item"
+              [class.is-active]="current.sec_Id === section.sec_Id"
+              (click)="selectSection(section)"
+            >
+              <span class="section-rail__dot" aria-hidden="true"></span>
+              {{ section.section }}
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="col-12 col-lg-9">
+      <article class="content-card" [attr.aria-labelledby]="'section-heading'">
+        <header class="content-card__header">
+          <span class="content-card__kicker">{{ current.school }}</span>
+          <h2 id="section-heading" class="content-card__title">{{ current.section }}</h2>
+        </header>
+
+        <div class="content-card__body cms-content" [innerHTML]="safeContent"></div>
+      </article>
+    </main>
+  </div>
+</div>

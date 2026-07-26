@@ -1,0 +1,24 @@
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-lg-4 col-md-6" *ngFor="let school of schools">
+      <div class="card school-card h-100 shadow-sm">
+        <img
+          [src]="school.imageCoverURL"
+          [alt]="school.school_Name"
+          class="card-img-top school-image"
+        />
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title fw-bold">
+            {{ school.school_Name }}
+          </h4>
+
+          <p class="card-text text-muted flex-grow-1">
+            {{ school.school_Desc }}
+          </p>
+
+          <button class="btn btn-primary mt-auto">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
