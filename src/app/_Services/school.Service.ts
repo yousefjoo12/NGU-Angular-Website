@@ -17,7 +17,10 @@ export class SchoolService {
 
   getSchoolById(id: number): Observable<SchoolSection[]> {
     return this._http.get<SchoolSection[]>(
-      `https://localhost:7069/api/School_Details/GetActiveSchoolDetailsById/${id}`,
+      `${this.apiUrl}/School_Details/GetActiveSchoolDetailsById/${id}`,
     );
+  }
+  getSchool(id: number): Observable<School> {
+    return this._http.get<School>(`${this.apiUrl}/School/${id}`);
   }
 }

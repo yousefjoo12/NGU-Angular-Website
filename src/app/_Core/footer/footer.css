@@ -1,20 +1,26 @@
-.footer{
+.footer {
 
-    background:#0a2342;
+    background:#5c0a2c;
 
     color:white;
 
 }
 
-.social-bar{
 
-    background:#06172b;
+
+/* Social Bar */
+
+.social-bar {
+
+    background:#3d061d;
 
     padding:20px 0;
 
 }
 
-.social-icons{
+
+
+.social-icons {
 
     display:flex;
 
@@ -24,7 +30,9 @@
 
 }
 
-.social-icons a{
+
+
+.social-icons a {
 
     width:45px;
 
@@ -38,7 +46,7 @@
 
     align-items:center;
 
-    background:#12365e;
+    background:#7f0e3d;
 
     color:white;
 
@@ -50,25 +58,35 @@
 
 }
 
-.social-icons a:hover{
 
-    background:#f4b400;
 
-    color:#0a2342;
+.social-icons a:hover {
+
+    background:#c8a24a;
+
+    color:#5c0a2c;
 
     transform:translateY(-5px);
 
 }
 
-.footer h5{
+
+
+
+.footer h5 {
 
     margin-bottom:20px;
 
     font-weight:700;
 
+    color:#fff;
+
 }
 
-.footer ul{
+
+
+
+.footer ul {
 
     padding:0;
 
@@ -76,15 +94,19 @@
 
 }
 
-.footer li{
+
+
+.footer li {
 
     margin-bottom:12px;
 
 }
 
-.footer a{
 
-    color:#d9d9d9;
+
+.footer a {
+
+    color:#e7dfd8;
 
     text-decoration:none;
 
@@ -92,23 +114,33 @@
 
 }
 
-.footer a:hover{
 
-    color:#f4b400;
+
+.footer a:hover {
+
+    color:#c8a24a;
 
     padding-left:6px;
 
 }
 
-.btn{
 
-    border-radius:12px;
 
-    font-weight:600;
+/* Logo */
+
+
+.logo {
+
+    width:180px;
 
 }
 
-.bottom{
+
+
+
+/* Bottom */
+
+.bottom {
 
     display:flex;
 
@@ -120,14 +152,131 @@
 
 }
 
-.logo{
 
-    width:180px;
+
+hr {
+
+    border-color:rgba(255,255,255,.15);
+
+}
+/* =========================
+        RESPONSIVE FOOTER
+========================= */
+
+
+@media (max-width: 991px) {
+
+
+    .footer .container {
+
+        text-align:center;
+
+    }
+
+
+    .footer h5 {
+
+        margin-top:25px;
+
+    }
+
+
+    .footer ul {
+
+        display:inline-block;
+
+    }
+
+
+    .social-icons {
+
+        gap:12px;
+
+    }
+
+
+    .logo {
+
+        width:160px;
+
+        margin:auto;
+
+    }
+
 
 }
 
-hr{
 
-    border-color:rgba(255,255,255,.15);
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+
+    .social-bar {
+
+        padding:15px 0;
+
+    }
+
+
+    .social-icons a {
+
+        width:40px;
+
+        height:40px;
+
+        font-size:16px;
+
+    }
+
+
+
+    .footer {
+
+        text-align:center;
+
+    }
+
+
+
+    .footer li {
+
+        margin-bottom:10px;
+
+    }
+
+
+
+    .bottom {
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+
+        padding:20px 0;
+
+    }
+
+
+
+    .bottom p {
+
+        margin:0;
+
+        font-size:.9rem;
+
+    }
+
+
+
+    hr {
+
+        margin:20px 0;
+
+    }
+
 
 }

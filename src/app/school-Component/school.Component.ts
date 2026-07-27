@@ -9,8 +9,8 @@ import { SchoolSection } from '../_Interfaces/SchoolSection';
   selector: 'app-school',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './school.component.html',
-  styleUrls: ['./school.component.css'],
+  templateUrl: './school.Component.html',
+  styleUrls: ['./school.Component.css'],
 })
 export class SchoolComponent implements OnInit {
   schoolId!: number;
@@ -20,6 +20,7 @@ export class SchoolComponent implements OnInit {
 
   loading = true;
   errorMessage = '';
+  imageCoverURL = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,12 +32,19 @@ export class SchoolComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
+
       if (!id) {
         this.errorMessage = 'Invalid school reference.';
         this.loading = false;
         return;
       }
+
       this.schoolId = id;
+
+      // تحميل صورة الكلية
+      this.loadSchoolImage(id);
+
+      // تحميل Sections
       this.fetchSchool(id);
     });
   }
@@ -74,5 +82,12 @@ export class SchoolComponent implements OnInit {
 
   trackBySectionId(_index: number, section: SchoolSection): number {
     return section.sec_Id;
+  }
+  private loadSchoolImage(id: number) {
+    this.schoolService.getSchool(id).subscribe({
+      next: (school) => {
+        this.imageCoverURL = school.imageCoverURL;
+      },
+    });
   }
 }

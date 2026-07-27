@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { SchoolService } from '../../_Services/school.Service';
 import { School } from '../../_Interfaces/School';
 
@@ -9,10 +11,17 @@ import { School } from '../../_Interfaces/School';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css'],
+  styleUrl: './navbar.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements OnInit {
+export class Navbar implements OnInit, OnDestroy {
   schools: School[] = [];
+
+  dropdownOpen = false;
+
+  loading = true;
+
+  private subscription = new Subscription();
 
   constructor(private schoolService: SchoolService) {}
 
@@ -21,13 +30,34 @@ export class NavbarComponent implements OnInit {
   }
 
   loadSchools(): void {
-    this.schoolService.getAllSchools().subscribe({
-      next: (data) => {
-        this.schools = data;
+    const sub = this.schoolService.getAllSchools().subscribe({
+      next: (res: School[]) => {
+        this.schools = res;
+
+        this.loading = false;
+
+        console.log('Navbar Schools:', this.schools);
       },
+
       error: (err) => {
-        console.error('Error loading schools', err);
+        console.error('Load Schools Error:', err);
+
+        this.loading = false;
       },
     });
+
+    this.subscription.add(sub);
+  }
+
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  closeDropdown(): void {
+    this.dropdownOpen = false;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

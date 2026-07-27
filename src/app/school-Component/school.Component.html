@@ -1,16 +1,13 @@
 <!-- ============ HERO ============ -->
-<section class="school-hero" *ngIf="activeSection as heroSection">
+<section
+  class="school-hero"
+  *ngIf="activeSection as heroSection"
+  [style.background-image]="'url(' + imageCoverURL + ')'"
+>
   <div class="school-hero__pattern"></div>
   <div class="container school-hero__inner">
     <p class="school-hero__eyebrow">Academics</p>
     <h1 class="school-hero__title">{{ heroSection.school }}</h1>
-    <nav class="school-hero__crumbs" aria-label="Breadcrumb">
-      <a routerLink="/">Home</a>
-      <span class="divider">/</span>
-      <a routerLink="/about">Academics</a>
-      <span class="divider">/</span>
-      <span class="current">{{ heroSection.school }}</span>
-    </nav>
   </div>
 </section>
 
