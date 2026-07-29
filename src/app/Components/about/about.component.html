@@ -1,62 +1,75 @@
-<!-- HERO -->
-<section class="about-hero" [style.background-image]="'url(' + currentHeroImage + ')'">
-  <div class="container">
-    <h1>About New Giza University</h1>
+<!-- ================= HERO ================= -->
 
-    <p>Learn more about New Giza University.</p>
+<section
+  class="about-hero"
+  [style.background-image]="
+    'linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.35)), url(' + currentHeroImage + ')'
+  "
+>
+  <div class="container hero-content">
+    <span class="hero-subtitle">NEW GIZA UNIVERSITY</span>
+
+    <h1>About NGU</h1>
   </div>
 </section>
 
-<!-- Loading -->
+<!-- ================= LOADING ================= -->
+
 <div class="state-panel" *ngIf="loading">
   <div class="spinner"></div>
+
+  <p>Loading About Information...</p>
 </div>
 
-<!-- Error -->
+<!-- ================= ERROR ================= -->
+
 <div class="state-panel" *ngIf="!loading && errorMessage">
-  {{ errorMessage }}
+  <h4>{{ errorMessage }}</h4>
 </div>
 
-<!-- BODY -->
+<!-- ================= BODY ================= -->
 
-<div class="container school-body" *ngIf="!loading && !errorMessage && activeAbout">
-  <div class="row">
-    <!-- Sidebar -->
+<section class="school-body" *ngIf="!loading && !errorMessage && activeAbout">
+  <div class="container">
+    <div class="row g-5">
+      <!-- ================= SIDEBAR ================= -->
 
-    <aside class="col-lg-3 mb-4">
-      <nav class="section-rail">
-        <span class="section-rail__label"> About NGU </span>
+      <div class="col-lg-3">
+        <aside class="section-rail">
+          <span class="section-rail__label"> ABOUT NGU </span>
 
-        <ul>
-          <li *ngFor="let item of abouts">
-            <button
-              class="section-rail__item"
-              [class.is-active]="item.id === activeAbout.id"
-              (click)="selectAbout(item)"
-            >
-              <span class="section-rail__dot"></span>
+          <ul>
+            <li *ngFor="let item of abouts; trackBy: trackById">
+              <button
+                type="button"
+                class="section-rail__item"
+                [class.is-active]="item.id === activeAbout.id"
+                (click)="selectAbout(item)"
+              >
+                <span class="section-rail__dot"></span>
 
-              {{ item.about_Name }}
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+                {{ item.about_Name }}
+              </button>
+            </li>
+          </ul>
+        </aside>
+      </div>
 
-    <!-- Content -->
+      <!-- ================= CONTENT ================= -->
 
-    <main class="col-lg-9">
-      <article class="content-card">
-        <div class="content-card__header">
-          <span class="content-card__kicker"> About NGU </span>
+      <div class="col-lg-9">
+        <article class="content-card">
+          <div class="content-card__header">
+            <span class="content-card__kicker"> About NGU </span>
 
-          <h2 class="content-card__title">
-            {{ activeAbout.about_Name }}
-          </h2>
-        </div>
+            <h2 class="content-card__title">
+              {{ activeAbout.about_Name }}
+            </h2>
+          </div>
 
-        <div class="cms-content" [innerHTML]="safeContent"></div>
-      </article>
-    </main>
+          <div class="cms-content" [innerHTML]="safeContent"></div>
+        </article>
+      </div>
+    </div>
   </div>
-</div>
+</section>

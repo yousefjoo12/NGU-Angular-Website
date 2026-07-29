@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -13,6 +13,10 @@ import { About } from '../../_Interfaces/about';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit, OnDestroy {
+  // ==============================
+  // DATA
+  // ==============================
+
   abouts: About[] = [];
 
   activeAbout!: About;
@@ -23,16 +27,34 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   errorMessage = '';
 
+  // ==============================
+  // HERO
+  // ==============================
+
   currentHeroImage = '';
+
+  heroImages: string[] = [];
+
+  currentHeroIndex = 0;
+
+  private heroInterval: any;
 
   constructor(
     private aboutService: AboutService,
     private sanitizer: DomSanitizer,
   ) {}
 
+  // ==============================
+  // INIT
+  // ==============================
+
   ngOnInit(): void {
     this.loadAbout();
   }
+
+  // ==============================
+  // LOAD DATA
+  // ==============================
 
   loadAbout(): void {
     this.loading = true;
@@ -42,7 +64,11 @@ export class AboutComponent implements OnInit, OnDestroy {
         this.abouts = res.filter((x) => x.status).sort((a, b) => a.displayOrder - b.displayOrder);
 
         if (this.abouts.length > 0) {
+          this.heroImages = this.abouts.map((x) => x.imageCoverURL).filter((x) => x);
+
           this.selectAbout(this.abouts[0]);
+
+          this.startHeroSlider();
         }
 
         this.loading = false;
@@ -58,23 +84,55 @@ export class AboutComponent implements OnInit, OnDestroy {
     });
   }
 
+  // ==============================
+  // SELECT ITEM
+  // ==============================
+
   selectAbout(item: About): void {
     this.activeAbout = item;
 
     this.safeContent = this.sanitizer.bypassSecurityTrustHtml(item.about_Content || '');
 
     if (item.imageCoverURL) {
-      console.log(item.imageCoverURL);
-
       this.currentHeroImage = item.imageCoverURL;
-    } else {
-      this.currentHeroImage = '';
+
+      this.currentHeroIndex = this.heroImages.indexOf(item.imageCoverURL);
     }
   }
+
+  // ==============================
+  // HERO SLIDER
+  // ==============================
+
+  startHeroSlider(): void {
+    if (this.heroImages.length <= 1) return;
+
+    this.heroInterval = setInterval(() => {
+      this.currentHeroIndex++;
+
+      if (this.currentHeroIndex >= this.heroImages.length) {
+        this.currentHeroIndex = 0;
+      }
+
+      this.currentHeroImage = this.heroImages[this.currentHeroIndex];
+    }, 5000);
+  }
+
+  // ==============================
+  // TRACK BY
+  // ==============================
 
   trackById(index: number, item: About): number {
     return item.id;
   }
 
-  ngOnDestroy(): void {}
+  // ==============================
+  // DESTROY
+  // ==============================
+
+  ngOnDestroy(): void {
+    if (this.heroInterval) {
+      clearInterval(this.heroInterval);
+    }
+  }
 }
