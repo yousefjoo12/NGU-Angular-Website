@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { SchoolService } from '../../_Services/school.Service';
+import { SchoolService } from '../../_Services/school.service';
 import { School } from '../../_Interfaces/School';
 
 @Component({

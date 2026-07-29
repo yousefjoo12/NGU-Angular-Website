@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
-import { SchoolService } from '../_Services/school.Service';
-import { SchoolSection } from '../_Interfaces/SchoolSection';
+import { SchoolService } from '../../_Services/school.service';
+import { SchoolSection } from '../../_Interfaces/SchoolSection';
 
 @Component({
   selector: 'app-school',

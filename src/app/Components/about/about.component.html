@@ -1,0 +1,62 @@
+<!-- HERO -->
+<section class="about-hero" [style.background-image]="'url(' + currentHeroImage + ')'">
+  <div class="container">
+    <h1>About New Giza University</h1>
+
+    <p>Learn more about New Giza University.</p>
+  </div>
+</section>
+
+<!-- Loading -->
+<div class="state-panel" *ngIf="loading">
+  <div class="spinner"></div>
+</div>
+
+<!-- Error -->
+<div class="state-panel" *ngIf="!loading && errorMessage">
+  {{ errorMessage }}
+</div>
+
+<!-- BODY -->
+
+<div class="container school-body" *ngIf="!loading && !errorMessage && activeAbout">
+  <div class="row">
+    <!-- Sidebar -->
+
+    <aside class="col-lg-3 mb-4">
+      <nav class="section-rail">
+        <span class="section-rail__label"> About NGU </span>
+
+        <ul>
+          <li *ngFor="let item of abouts">
+            <button
+              class="section-rail__item"
+              [class.is-active]="item.id === activeAbout.id"
+              (click)="selectAbout(item)"
+            >
+              <span class="section-rail__dot"></span>
+
+              {{ item.about_Name }}
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+
+    <main class="col-lg-9">
+      <article class="content-card">
+        <div class="content-card__header">
+          <span class="content-card__kicker"> About NGU </span>
+
+          <h2 class="content-card__title">
+            {{ activeAbout.about_Name }}
+          </h2>
+        </div>
+
+        <div class="cms-content" [innerHTML]="safeContent"></div>
+      </article>
+    </main>
+  </div>
+</div>
