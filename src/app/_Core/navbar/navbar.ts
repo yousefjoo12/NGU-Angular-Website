@@ -1,8 +1,6 @@
+import { Component, OnInit, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
-
 import { SchoolService } from '../../_Services/school.service';
 import { School } from '../../_Interfaces/School';
 
@@ -14,50 +12,36 @@ import { School } from '../../_Interfaces/School';
   styleUrl: './navbar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Navbar implements OnInit, OnDestroy {
-  schools: School[] = [];
+export class Navbar implements OnInit {
+  private schoolService = inject(SchoolService);
 
-  dropdownOpen = false;
-
-  loading = true;
-
-  private subscription = new Subscription();
-
-  constructor(private schoolService: SchoolService) {}
+  // حالة المكون باستخدام Signals
+  schools = signal<School[]>([]);
+  loading = signal<boolean>(true);
+  dropdownOpen = signal<boolean>(false);
 
   ngOnInit(): void {
     this.loadSchools();
   }
 
   loadSchools(): void {
-    const sub = this.schoolService.getAllSchools().subscribe({
+    this.schoolService.getAllSchools().subscribe({
       next: (res: School[]) => {
-        this.schools = res;
-
-        this.loading = false;
-
-        console.log('Navbar Schools:', this.schools);
+        this.schools.set(res);
+        this.loading.set(false);
       },
-
       error: (err) => {
         console.error('Load Schools Error:', err);
-
-        this.loading = false;
+        this.loading.set(false);
       },
     });
-
-    this.subscription.add(sub);
   }
 
   toggleDropdown(): void {
-    this.dropdownOpen = !this.dropdownOpen;
+    this.dropdownOpen.update((val) => !val);
   }
 
   closeDropdown(): void {
-    this.dropdownOpen = false;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.dropdownOpen.set(false);
   }
 }

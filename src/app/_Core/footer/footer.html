@@ -1,104 +1,115 @@
 <footer class="footer">
-  <!-- Social -->
-
+  <!-- Social Bar -->
   <div class="social-bar">
     <div class="container">
       <div class="social-icons">
-        <a href="https://www.facebook.com/newgizauniversity" target="_blank">
+        <a
+          href="https://www.facebook.com/newgizauniversity"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
           <i class="fab fa-facebook-f"></i>
         </a>
-
-        <a href="https://x.com/NGUegypt" target="_blank">
+        <a
+          href="https://x.com/NGUegypt"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X (Twitter)"
+        >
           <i class="fab fa-x-twitter"></i>
         </a>
-
-        <a href="https://www.instagram.com/newgizauniversity" target="_blank">
+        <a
+          href="https://www.instagram.com/newgizauniversity"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
           <i class="fab fa-instagram"></i>
         </a>
-
-        <a href="https://www.linkedin.com/school/newgiza-university---ngu" target="_blank">
+        <a
+          href="https://www.linkedin.com/school/newgiza-university---ngu"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
           <i class="fab fa-linkedin-in"></i>
         </a>
-
-        <a href="https://www.youtube.com/@newgizauniversity" target="_blank">
+        <a
+          href="https://www.youtube.com/@newgizauniversity"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+        >
           <i class="fab fa-youtube"></i>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-
+  <!-- Footer Main Content -->
   <div class="container py-5">
     <div class="row">
       <!-- Schools -->
-
       <div class="col-lg-3 col-md-6 mb-4">
         <h5>Schools</h5>
-
         <ul>
-          <li *ngFor="let school of schools">
-            <a href="#">
-              {{ school }}
-            </a>
-          </li>
+          @if (isLoading()) {
+            <li>Loading...</li>
+          } @else {
+            @for (school of schools(); track school.id) {
+              <li>
+                <a [routerLink]="['/schools', school.id]">
+                  {{ school.school_Name.replace('School of ', '') }}
+                </a>
+              </li>
+            } @empty {
+              <li>No schools available</li>
+            }
+          }
         </ul>
       </div>
 
       <!-- About -->
-
       <div class="col-lg-3 col-md-6 mb-4">
         <h5>About NGU</h5>
-
         <ul>
           <li><a routerLink="/about">Mission</a></li>
-
           <li><a routerLink="/about">Vision</a></li>
-
           <li><a routerLink="/collaboration">Collaborations</a></li>
         </ul>
       </div>
 
       <!-- Admissions -->
-
       <div class="col-lg-3 col-md-6 mb-4">
         <h5>Admissions</h5>
-
         <ul>
           <li><a routerLink="/admissions">How to Apply</a></li>
-
           <li><a routerLink="/admissions">Requirements</a></li>
-
           <li><a routerLink="/admissions">Deadlines</a></li>
         </ul>
       </div>
 
       <!-- Buttons -->
-
-      <div class="col-lg-3">
-        <a class="btn btn-warning w-100 mb-3"> Apply Now </a>
-
-        <a class="btn btn-outline-light w-100 mb-3"> Campus Tour </a>
-
-        <a class="btn btn-outline-light w-100 mb-3"> Careers </a>
-
-        <a class="btn btn-outline-light w-100"> Contact </a>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <a routerLink="/apply" class="btn btn-warning w-100 mb-3">Apply Now</a>
+        <a routerLink="/campus-tour" class="btn btn-outline-light w-100 mb-3">Campus Tour</a>
+        <a routerLink="/careers" class="btn btn-outline-light w-100 mb-3">Careers</a>
+        <a routerLink="/contact" class="btn btn-outline-light w-100">Contact</a>
       </div>
     </div>
 
     <hr />
 
+    <!-- Bottom -->
     <div class="bottom">
       <img
         src="https://ngu.edu.eg/wp-content/uploads/2019/06/Newgiza-University-NAME-Logo.svg"
+        alt="Newgiza University Logo"
         class="logo"
       />
 
-      <p>
-        © {{ currentYear }}
-
-        New Giza University
-      </p>
+      <p>© {{ currentYear }} New Giza University</p>
     </div>
   </div>
 </footer>

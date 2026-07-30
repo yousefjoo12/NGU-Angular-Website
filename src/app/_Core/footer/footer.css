@@ -1,146 +1,224 @@
+/* ==========================================
+   FOOTER
+========================================== */
+
 .footer {
-
-    background:#5c0a2c;
-
-    color:white;
-
+    background: linear-gradient(180deg, #4b0824 0%, #650b31 100%);
+    color: #fff;
+    overflow: hidden;
 }
 
+.footer .container {
+    max-width: 1320px;
+}
 
-
-/* Social Bar */
+/* ==========================================
+   SOCIAL BAR
+========================================== */
 
 .social-bar {
-
-    background:#3d061d;
-
-    padding:20px 0;
-
+    background: #3b041c;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
 }
-
-
 
 .social-icons {
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:18px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
-
-
 
 .social-icons a {
 
-    width:45px;
+    width: 48px;
+    height: 48px;
 
-    height:45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    display:flex;
+    background: rgba(255,255,255,.08);
 
-    justify-content:center;
+    border: 1px solid rgba(255,255,255,.18);
 
-    align-items:center;
+    color: white;
 
-    background:#7f0e3d;
+    font-size: 20px;
 
-    color:white;
+    transition: .3s;
 
-    text-decoration:none;
-
-    transition:.3s;
-
-    font-size:18px;
-
+    text-decoration: none;
 }
 
-
-
-.social-icons a:hover {
-
-    background:#c8a24a;
-
-    color:#5c0a2c;
-
-    transform:translateY(-5px);
-
+.social-icons a:hover{
+    transform: translateY(-6px) scale(1.08);
 }
 
+/* Facebook */
 
+.social-icons a:nth-child(1):hover{
+    background:#1877F2;
+    border-color:#1877F2;
+}
 
+/* X */
 
-.footer h5 {
+.social-icons a:nth-child(2):hover{
+    background:#000;
+    border-color:#000;
+}
 
-    margin-bottom:20px;
+/* Instagram */
+
+.social-icons a:nth-child(3):hover{
+    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+    border:none;
+}
+
+/* LinkedIn */
+
+.social-icons a:nth-child(4):hover{
+    background:#0A66C2;
+    border-color:#0A66C2;
+}
+
+/* YouTube */
+
+.social-icons a:nth-child(5):hover{
+    background:#FF0000;
+    border-color:#FF0000;
+}
+
+/* ==========================================
+   TITLES
+========================================== */
+
+.footer h5{
 
     font-weight:700;
 
-    color:#fff;
+    margin-bottom:22px;
 
+    font-size:24px;
+
+    position:relative;
 }
 
+.footer h5::after{
 
+    content:"";
 
+    display:block;
 
-.footer ul {
+    width:45px;
 
-    padding:0;
+    height:3px;
+
+    background:#c8a24a;
+
+    margin-top:10px;
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+.footer ul{
 
     list-style:none;
 
+    padding:0;
+
+    margin:0;
 }
 
+.footer li{
 
-
-.footer li {
-
-    margin-bottom:12px;
-
+    margin-bottom:14px;
 }
 
+.footer a{
 
-
-.footer a {
-
-    color:#e7dfd8;
+    color:#ececec;
 
     text-decoration:none;
 
     transition:.3s;
-
 }
 
-
-
-.footer a:hover {
+.footer ul li a:hover{
 
     color:#c8a24a;
 
-    padding-left:6px;
-
+    padding-left:7px;
 }
 
+/* ==========================================
+   BUTTONS
+========================================== */
 
+.btn-warning{
 
-/* Logo */
+    background:#c8a24a;
 
+    border:none;
 
-.logo {
+    color:#fff;
 
-    width:180px;
+    font-weight:600;
 
+    padding:12px;
+
+    border-radius:8px;
+
+    transition:.3s;
 }
 
+.btn-warning:hover{
 
+    background:#d7b764;
 
+    transform:translateY(-3px);
+}
 
-/* Bottom */
+.btn-outline-light{
 
-.bottom {
+    border:1px solid rgba(255,255,255,.35);
+
+    transition:.3s;
+}
+
+.btn-outline-light:hover{
+
+    background:#fff;
+
+    color:#5c0a2c;
+
+    border-color:#fff;
+
+    transform:translateY(-3px);
+}
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+.footer hr{
+
+    border-color:rgba(255,255,255,.1);
+
+    margin:45px 0 25px;
+}
+
+/* ==========================================
+   BOTTOM
+========================================== */
+
+.bottom{
 
     display:flex;
 
@@ -148,133 +226,105 @@
 
     align-items:center;
 
-    padding:20px 0;
-
+    gap:20px;
 }
 
+.logo{
 
+    width:190px;
 
-hr {
-
-    border-color:rgba(255,255,255,.15);
-
+    max-width:100%;
 }
-/* =========================
-        RESPONSIVE FOOTER
-========================= */
 
+.bottom p{
 
-@media (max-width: 991px) {
+    margin:0;
 
+    color:rgba(255,255,255,.85);
 
-    .footer .container {
+    font-size:15px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .footer{
 
         text-align:center;
-
     }
 
+    .footer h5{
 
-    .footer h5 {
-
-        margin-top:25px;
-
+        margin-top:30px;
     }
 
+    .footer h5::after{
 
-    .footer ul {
+        margin:10px auto 0;
+    }
+
+    .footer ul{
 
         display:inline-block;
 
+        text-align:left;
     }
 
-
-    .social-icons {
-
-        gap:12px;
-
-    }
-
-
-    .logo {
-
-        width:160px;
-
-        margin:auto;
-
-    }
-
-
-}
-
-
-
-/* Mobile */
-
-@media (max-width: 767px) {
-
-
-    .social-bar {
-
-        padding:15px 0;
-
-    }
-
-
-    .social-icons a {
-
-        width:40px;
-
-        height:40px;
-
-        font-size:16px;
-
-    } 
-
-    .footer {
-
-        text-align:center;
-
-    }
-
-
-
-    .footer li {
-
-        margin-bottom:10px;
-
-    }
-
-
-
-    .bottom {
+    .bottom{
 
         flex-direction:column;
-
-        gap:15px;
-
-        text-align:center;
-
-        padding:20px 0;
-
     }
 
+    .logo{
 
+        margin-bottom:10px;
+    }
+}
 
-    .bottom p {
+@media(max-width:768px){
 
-        margin:0;
+    .social-icons{
 
-        font-size:.9rem;
-
+        gap:12px;
     }
 
+    .social-icons a{
 
+        width:42px;
 
-    hr {
+        height:42px;
 
-        margin:20px 0;
-
+        font-size:18px;
     }
 
+    .footer h5{
+
+        font-size:21px;
+    }
+
+    .bottom p{
+
+        font-size:14px;
+    }
+}
+
+@media(max-width:576px){
+
+    .social-icons a{
+
+        width:38px;
+
+        height:38px;
+
+        font-size:16px;
+    }
+
+    .logo{
+
+        width:150px;
+    }
 
 }
