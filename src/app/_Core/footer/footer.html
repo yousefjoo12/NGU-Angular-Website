@@ -59,7 +59,7 @@
           } @else {
             @for (school of schools(); track school.id) {
               <li>
-                <a [routerLink]="['/schools', school.id]">
+                <a [routerLink]="['/school', school.id]">
                   {{ school.school_Name.replace('School of ', '') }}
                 </a>
               </li>
@@ -92,7 +92,14 @@
 
       <!-- Buttons -->
       <div class="col-lg-3 col-md-6 mb-4">
-        <a routerLink="/apply" class="btn btn-warning w-100 mb-3">Apply Now</a>
+        <a
+          href="https://selfservice.ngu.edu.eg/ApplicationForm/ApplicationLogin.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-warning w-100 mb-3"
+        >
+          Apply Now
+        </a>
         <a routerLink="/campus-tour" class="btn btn-outline-light w-100 mb-3">Campus Tour</a>
         <a routerLink="/careers" class="btn btn-outline-light w-100 mb-3">Careers</a>
         <a routerLink="/contact" class="btn btn-outline-light w-100">Contact</a>

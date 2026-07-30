@@ -31,7 +31,6 @@
 }
 
 .social-icons a {
-
     width: 48px;
     height: 48px;
 
@@ -42,289 +41,238 @@
     border-radius: 50%;
 
     background: rgba(255,255,255,.08);
-
     border: 1px solid rgba(255,255,255,.18);
 
-    color: white;
+    color: #fff;
 
     font-size: 20px;
 
-    transition: .3s;
-
     text-decoration: none;
+
+    transition: all .3s ease;
 }
 
-.social-icons a:hover{
+.social-icons a:hover {
     transform: translateY(-6px) scale(1.08);
+    color: #fff;
 }
 
 /* Facebook */
-
-.social-icons a:nth-child(1):hover{
-    background:#1877F2;
-    border-color:#1877F2;
+.social-icons a:nth-child(1):hover {
+    background: #1877F2;
+    border-color: #1877F2;
 }
 
 /* X */
-
-.social-icons a:nth-child(2):hover{
-    background:#000;
-    border-color:#000;
+.social-icons a:nth-child(2):hover {
+    background: #000;
+    border-color: #000;
 }
 
 /* Instagram */
-
-.social-icons a:nth-child(3):hover{
-    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-    border:none;
+.social-icons a:nth-child(3):hover {
+    background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+    border-color: transparent;
 }
 
 /* LinkedIn */
-
-.social-icons a:nth-child(4):hover{
-    background:#0A66C2;
-    border-color:#0A66C2;
+.social-icons a:nth-child(4):hover {
+    background: #0A66C2;
+    border-color: #0A66C2;
 }
 
 /* YouTube */
-
-.social-icons a:nth-child(5):hover{
-    background:#FF0000;
-    border-color:#FF0000;
+.social-icons a:nth-child(5):hover {
+    background: #FF0000;
+    border-color: #FF0000;
 }
 
 /* ==========================================
    TITLES
 ========================================== */
 
-.footer h5{
-
-    font-weight:700;
-
-    margin-bottom:22px;
-
-    font-size:24px;
-
-    position:relative;
+.footer h5 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    position: relative;
 }
 
-.footer h5::after{
+.footer h5::after {
+    content: "";
+    display: block;
+    width: 45px;
+    height: 3px;
+    margin-top: 10px;
+    background: #c8a24a;
+    border-radius: 10px;
+}
 
-    content:"";
+/* ==========================================
+   LISTS
+========================================== */
 
-    display:block;
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    width:45px;
-
-    height:3px;
-
-    background:#c8a24a;
-
-    margin-top:10px;
+.footer li {
+    margin-bottom: 14px;
 }
 
 /* ==========================================
    LINKS
 ========================================== */
 
-.footer ul{
-
-    list-style:none;
-
-    padding:0;
-
-    margin:0;
+.footer ul li a {
+    color: #ececec;
+    text-decoration: none;
+    transition: all .3s ease;
 }
 
-.footer li{
-
-    margin-bottom:14px;
-}
-
-.footer a{
-
-    color:#ececec;
-
-    text-decoration:none;
-
-    transition:.3s;
-}
-
-.footer ul li a:hover{
-
-    color:#c8a24a;
-
-    padding-left:7px;
+.footer ul li a:hover {
+    color: #c8a24a;
+    padding-left: 8px;
 }
 
 /* ==========================================
    BUTTONS
 ========================================== */
 
-.btn-warning{
-
-    background:#c8a24a;
-
-    border:none;
-
-    color:#fff;
-
-    font-weight:600;
-
-    padding:12px;
-
-    border-radius:8px;
-
-    transition:.3s;
+.footer .btn {
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: all .3s ease;
 }
 
-.btn-warning:hover{
+/* Apply */
 
-    background:#d7b764;
-
-    transform:translateY(-3px);
+.footer .btn-warning {
+    background: #c8a24a;
+    border: 1px solid #c8a24a;
+    color: #fff;
 }
 
-.btn-outline-light{
-
-    border:1px solid rgba(255,255,255,.35);
-
-    transition:.3s;
+.footer .btn-warning:hover {
+    background: #b89236;
+    border-color: #b89236;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.25);
 }
 
-.btn-outline-light:hover{
+/* Outline Buttons */
 
-    background:#fff;
+.footer .btn-outline-light {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.35);
+}
 
-    color:#5c0a2c;
-
-    border-color:#fff;
-
-    transform:translateY(-3px);
+.footer .btn-outline-light:hover {
+    background: #fff;
+    color: #5c0a2c;
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.25);
 }
 
 /* ==========================================
    DIVIDER
 ========================================== */
 
-.footer hr{
-
-    border-color:rgba(255,255,255,.1);
-
-    margin:45px 0 25px;
+.footer hr {
+    border-color: rgba(255,255,255,.1);
+    margin: 45px 0 25px;
 }
 
 /* ==========================================
    BOTTOM
 ========================================== */
 
-.bottom{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.logo{
-
-    width:190px;
-
-    max-width:100%;
+.logo {
+    width: 190px;
+    max-width: 100%;
 }
 
-.bottom p{
-
-    margin:0;
-
-    color:rgba(255,255,255,.85);
-
-    font-size:15px;
+.bottom p {
+    margin: 0;
+    color: rgba(255,255,255,.85);
+    font-size: 15px;
 }
 
 /* ==========================================
    RESPONSIVE
 ========================================== */
 
-@media(max-width:992px){
+@media (max-width:992px) {
 
-    .footer{
-
-        text-align:center;
+    .footer {
+        text-align: center;
     }
 
-    .footer h5{
-
-        margin-top:30px;
+    .footer h5 {
+        margin-top: 30px;
     }
 
-    .footer h5::after{
-
-        margin:10px auto 0;
+    .footer h5::after {
+        margin: 10px auto 0;
     }
 
-    .footer ul{
-
-        display:inline-block;
-
-        text-align:left;
+    .footer ul {
+        display: inline-block;
+        text-align: left;
     }
 
-    .bottom{
-
-        flex-direction:column;
+    .bottom {
+        flex-direction: column;
     }
 
-    .logo{
-
-        margin-bottom:10px;
+    .logo {
+        margin-bottom: 12px;
     }
 }
 
-@media(max-width:768px){
+@media (max-width:768px) {
 
-    .social-icons{
-
-        gap:12px;
+    .social-icons {
+        gap: 12px;
     }
 
-    .social-icons a{
-
-        width:42px;
-
-        height:42px;
-
-        font-size:18px;
+    .social-icons a {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
     }
 
-    .footer h5{
-
-        font-size:21px;
+    .footer h5 {
+        font-size: 21px;
     }
 
-    .bottom p{
-
-        font-size:14px;
+    .bottom p {
+        font-size: 14px;
     }
 }
 
-@media(max-width:576px){
+@media (max-width:576px) {
 
-    .social-icons a{
-
-        width:38px;
-
-        height:38px;
-
-        font-size:16px;
+    .social-icons a {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
     }
 
-    .logo{
-
-        width:150px;
+    .logo {
+        width: 150px;
     }
-
 }
