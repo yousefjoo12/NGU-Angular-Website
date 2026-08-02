@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Title, DomSanitizer, SafeHtml } from '@angular/platform-browser'; // 👈 إضافة DomSanitizer و SafeHtml
+import { Title, DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap, forkJoin, map, catchError, of, Observable } from 'rxjs';
 import { SchoolService } from '../../_Services/school.service';
@@ -34,7 +34,7 @@ export class SchoolComponent {
   private route = inject(ActivatedRoute);
   private schoolService = inject(SchoolService);
   private titleService = inject(Title);
-  private sanitizer = inject(DomSanitizer); // 👈 حقن الـ DomSanitizer
+  private sanitizer = inject(DomSanitizer);
 
   private initialSchoolState: SchoolDataState = {
     loading: true,
@@ -89,7 +89,6 @@ export class SchoolComponent {
 
   activeSection = signal<SchoolSection | null>(null);
 
-  // 👈 إضافة computed signal لتحويل HTML القسم الحالي إلى SafeHtml موثوق
   safeContent = computed<SafeHtml>(() => {
     const rawContent = this.activeSection()?.content_School || '';
     return this.sanitizer.bypassSecurityTrustHtml(rawContent);
@@ -110,6 +109,12 @@ export class SchoolComponent {
 
   selectSection(section: SchoolSection): void {
     this.activeSection.set(section);
+
+    // 👈 التمرير لأعلى الصفحة عند اختيارات السكشن
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   trackBySectionId(_index: number, section: SchoolSection): number {
