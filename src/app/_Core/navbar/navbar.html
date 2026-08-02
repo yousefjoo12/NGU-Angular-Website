@@ -26,7 +26,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar -->
+    <!-- Navbar Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-lg-center">
         <!-- About -->
@@ -34,41 +34,9 @@
           <a class="nav-link" routerLink="/about" routerLinkActive="active"> About </a>
         </li>
 
-        <!-- Academics Dropdown -->
-        <li class="nav-item dropdown-custom">
-          <a
-            class="nav-link"
-            href="javascript:void(0)"
-            (click)="toggleDropdown()"
-            [class.active]="dropdownOpen()"
-          >
-            Academics
-            <i class="fa fa-chevron-down ms-1"></i>
-          </a>
-
-          <ul class="dropdown-menu-custom" [class.show]="dropdownOpen()">
-            @if (loading()) {
-              <li>
-                <span class="dropdown-item text-muted"> Loading... </span>
-              </li>
-            } @else {
-              @for (school of schools(); track school.id) {
-                <li>
-                  <a
-                    class="dropdown-item"
-                    [routerLink]="['/school', school.id]"
-                    (click)="closeDropdown()"
-                  >
-                    {{ school.school_Name }}
-                  </a>
-                </li>
-              } @empty {
-                <li>
-                  <span class="dropdown-item text-muted"> No schools found </span>
-                </li>
-              }
-            }
-          </ul>
+        <!-- Academics Link -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/academics" routerLinkActive="active"> Academics </a>
         </li>
 
         <!-- Admission -->

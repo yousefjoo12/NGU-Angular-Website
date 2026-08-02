@@ -64,10 +64,7 @@
             <h2 id="section-heading" class="content-card__title">{{ currentSection.section }}</h2>
           </header>
 
-          <div
-            class="content-card__body cms-content"
-            [innerHTML]="currentSection.content_School"
-          ></div>
+          <div class="content-card__body cms-content" [innerHTML]="safeContent()"></div>
         </article>
       </main>
     </div>

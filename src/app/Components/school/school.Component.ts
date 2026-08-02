@@ -1,7 +1,15 @@
-import { Component, ChangeDetectionStrategy, inject, signal, effect, Signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  signal,
+  effect,
+  Signal,
+  computed,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Title, DomSanitizer, SafeHtml } from '@angular/platform-browser'; // 👈 إضافة DomSanitizer و SafeHtml
 import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap, forkJoin, map, catchError, of, Observable } from 'rxjs';
 import { SchoolService } from '../../_Services/school.service';
@@ -26,8 +34,8 @@ export class SchoolComponent {
   private route = inject(ActivatedRoute);
   private schoolService = inject(SchoolService);
   private titleService = inject(Title);
+  private sanitizer = inject(DomSanitizer); // 👈 حقن الـ DomSanitizer
 
-  // 1. تحديد القيمة الأولية المضمونة
   private initialSchoolState: SchoolDataState = {
     loading: true,
     errorMessage: '',
@@ -35,7 +43,6 @@ export class SchoolComponent {
     sections: [],
   };
 
-  // 2. تحويل الـ Stream إلى Signal بدون تعارض في الـ Overloads
   readonly state: Signal<SchoolDataState> = toSignal(
     this.route.paramMap.pipe(
       map((params) => Number(params.get('id'))),
@@ -80,8 +87,13 @@ export class SchoolComponent {
     { initialValue: this.initialSchoolState },
   );
 
-  // Signal للقسم المختار
   activeSection = signal<SchoolSection | null>(null);
+
+  // 👈 إضافة computed signal لتحويل HTML القسم الحالي إلى SafeHtml موثوق
+  safeContent = computed<SafeHtml>(() => {
+    const rawContent = this.activeSection()?.content_School || '';
+    return this.sanitizer.bypassSecurityTrustHtml(rawContent);
+  });
 
   constructor() {
     effect(() => {

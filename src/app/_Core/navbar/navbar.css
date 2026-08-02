@@ -47,62 +47,6 @@
   width: 100%;
 }
 
-/* Dropdown Custom Styles */
-.dropdown-custom {
-  position: relative;
-}
-
-.dropdown-menu-custom {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  width: 280px;
-  max-height: 380px; /* تحديد أقصى ارتفاع لمنع خروج القائمة من الشاشة */
-  overflow-y: auto;   /* إضافة سكرول في حالة كثرة الكليات */
-  background: #fff;
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-  border-radius: 12px;
-  border: 1px solid #e7dfd8;
-  box-shadow: 0 15px 35px rgba(36, 31, 33, 0.15);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(15px);
-  transition: all 0.25s ease;
-  z-index: 9999;
-}
-
-.dropdown-menu-custom.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-item {
-  display: block;
-  padding: 12px 20px;
-  color: #241f21;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  font-weight: 500;
-}
-
-.dropdown-item:hover {
-  background: #7f0e3d;
-  color: white;
-}
-
-/* Custom Scrollbar for Dropdown */
-.dropdown-menu-custom::-webkit-scrollbar {
-  width: 6px;
-}
-
-.dropdown-menu-custom::-webkit-scrollbar-thumb {
-  background: #c8a24a;
-  border-radius: 10px;
-}
-
 /* Button */
 .btn-primary {
   background: #7f0e3d;
@@ -132,27 +76,5 @@
   .nav-link {
     margin: 8px 0;
     display: inline-block;
-  }
-
-  .dropdown-custom {
-    width: 100%;
-  }
-
-  /* تحويل Dropdowns المباشرة للوضع العادي لمنع الخروج عن شاشة الموبايل */
-  .dropdown-menu-custom {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    border: 1px solid #f0e8e0;
-    background: #faf7f2;
-    transform: none;
-    display: none;
-  }
-
-  .dropdown-menu-custom.show {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    margin-top: 10px;
   }
 }

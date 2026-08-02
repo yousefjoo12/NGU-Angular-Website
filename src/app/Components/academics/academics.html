@@ -1,0 +1,74 @@
+<!-- ================= HERO ================= -->
+<section
+  class="academics-hero hero-animated"
+  [style.background-image]="
+    activeHeroImage()
+      ? 'linear-gradient(rgba(0,0,0,0.65), rgba(127,14,61,0.16)), url(' + activeHeroImage() + ')'
+      : null
+  "
+>
+  <div class="container position-relative">
+    <span class="hero-subtitle">New Giza University</span>
+    <h1 class="hero-title">Academics</h1>
+  </div>
+</section>
+
+<!-- ================= BODY ================= -->
+<section class="academics-body">
+  <div class="container">
+    <!-- Loading State -->
+    @if (loading()) {
+      <div class="state-panel">
+        <div class="spinner" role="status"></div>
+        <p class="text-muted fw-semibold">Loading Academic Schools...</p>
+      </div>
+    } @else {
+      <!-- Schools Grid -->
+      <div class="row g-4 justify-content-center">
+        @for (school of schools(); track school.id; let i = $index) {
+          <div class="col-md-6 col-lg-4 animate-card" [style.animation-delay]="i * 0.08 + 's'">
+            <!-- الكارت بالكامل أصبح رابط ينقل للكلية -->
+            <a
+              [routerLink]="['/school', school.id]"
+              class="card h-100 school-card border-0 overflow-hidden text-decoration-none"
+            >
+              <!-- Dynamic School Image (schoolImage) -->
+              <div class="card-img-wrapper">
+                @if (school.schoolImage) {
+                  <img
+                    [src]="school.schoolImage"
+                    [alt]="school.school_Name"
+                    class="card-img-top school-img"
+                  />
+                } @else {
+                  <div class="placeholder-img d-flex align-items-center justify-content-center">
+                    <i class="fa fa-university display-4"></i>
+                  </div>
+                }
+                <div class="card-overlay-badge">
+                  <i class="fa fa-arrow-right"></i>
+                </div>
+              </div>
+
+              <!-- Card Content -->
+              <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div>
+                  <span class="school-kicker">Faculty</span>
+                  <h3 class="school-title mb-0">
+                    {{ school.school_Name }}
+                  </h3>
+                </div>
+              </div>
+            </a>
+          </div>
+        } @empty {
+          <div class="state-panel col-12">
+            <i class="fa fa-university display-4 text-muted mb-2"></i>
+            <h4 class="fw-bold">No Schools Available</h4>
+            <p class="text-muted">There are no academic schools listed at this moment.</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

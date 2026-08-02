@@ -6,8 +6,10 @@ import {
   effect,
   OnDestroy,
   Signal,
+  computed, // 👈 1. إضافة computed
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // 👈 2. إضافة DomSanitizer و SafeHtml
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, catchError, of, Observable } from 'rxjs';
 
@@ -31,6 +33,7 @@ export interface AboutDataState {
 })
 export class AboutComponent implements OnDestroy {
   private aboutService = inject(AboutService);
+  private sanitizer = inject(DomSanitizer); // 👈 3. حقن خدمة DomSanitizer
 
   // 1. القيمة الأولية المضمونة لتجنب أخطاء TypeScript Types
   private initialAboutState: AboutDataState = {
@@ -74,6 +77,13 @@ export class AboutComponent implements OnDestroy {
   activeAbout = signal<About | null>(null);
   currentHeroImage = signal<string>('');
   currentHeroIndex = signal<number>(0);
+
+  // 👈 4. إضافة computed signal لتعقيم (Sanitize) محتوى الـ CMS
+  safeContent = computed<SafeHtml>(() => {
+    // قم بتعديل اسم الخاصية (مثلاً content أو description) حسب ما هو موجود في interface About
+    const rawContent = this.activeAbout()?.about_Content || '';
+    return this.sanitizer.bypassSecurityTrustHtml(rawContent);
+  });
 
   private heroInterval: ReturnType<typeof setInterval> | null = null;
 

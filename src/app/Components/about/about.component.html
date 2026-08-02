@@ -68,7 +68,7 @@
             </div>
 
             <!-- استخدام innerHTML المباشر لحماية الآمان وتجنب bypassSecurityTrustHtml -->
-            <div class="cms-content" [innerHTML]="currentItem.about_Content"></div>
+            <div class="cms-content" [innerHTML]="safeContent()"></div>
           </article>
         </div>
       </div>
