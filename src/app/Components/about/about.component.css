@@ -452,43 +452,28 @@
     color:#fff;
 
 }
-
-::ng-deep .cms-content img{
-
-    width:100%;
-
-    border-radius:18px;
-
-    margin:30px 0;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-
-    transition:.4s;
-
+::ng-deep .cms-content img {
+  max-width: 100%;   /* يضمن عدم خروج الصورة الكبيرة عن حدود الشاشة */
+  height: auto !important; /* يحافظ على نسبة الطول للعارض (Aspect Ratio) ويمنع التمدد */
+  display: inline-block; /* لضمان التعامل بشكل طبيعي مع اللوجوهات والنصوص */
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease;
 }
 
-::ng-deep .cms-content img:hover{
-
-    transform:scale(1.02);
-
+::ng-deep .cms-content img:hover {
+  transform: scale(1.02);
 }
 
-::ng-deep .cms-content iframe{
-
-    width:100%;
-
-    aspect-ratio:16/9;
-
-    border:none;
-
-    border-radius:18px;
-
-    margin:35px 0;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-
+::ng-deep .cms-content iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  border-radius: 18px;
+  margin: 35px 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
-
 /*==================================
             LOADING
 ===================================*/
