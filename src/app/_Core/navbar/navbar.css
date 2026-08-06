@@ -3,9 +3,15 @@
 ========================= */
 
 .navbar {
-  padding: 12px 0;
+  padding: 16px 0;
   background: #faf7f2 !important;
   border-bottom: 1px solid #e7dfd8;
+  transition: all 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  padding: 10px 0;
+  box-shadow: 0 8px 24px rgba(36, 31, 33, 0.08);
 }
 
 .navbar-brand {

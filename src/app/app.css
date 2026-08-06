@@ -1,3 +1,24 @@
-.H-1000{
-    height: 1000px;
+/* =========================================================
+   SKIP LINK
+   Hidden until focused via keyboard (Tab). Required for WCAG
+   2.4.1 (Bypass Blocks) so keyboard users can jump past the
+   navbar straight to page content.
+========================================================= */
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 12px;
+  z-index: 2000;
+  background: #7f0e3d;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
 }

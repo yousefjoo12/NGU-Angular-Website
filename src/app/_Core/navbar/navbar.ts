@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -10,4 +10,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Navbar {}
+export class Navbar {
+  isScrolled = signal(false);
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.isScrolled.set(window.scrollY > 12);
+  }
+}

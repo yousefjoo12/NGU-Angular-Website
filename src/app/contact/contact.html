@@ -1,1 +1,142 @@
-<p>contact works!</p>
+<!-- ================= HERO ================= -->
+<section class="contact-hero">
+  <div class="container contact-hero__inner">
+    <p class="ngu-eyebrow">Get in Touch</p>
+    <h1>Contact New Giza University</h1>
+    <p class="contact-hero__lead">
+      Questions about admissions, academics, or campus life? Our team is here to help you find
+      your way to NGU.
+    </p>
+  </div>
+</section>
+
+<!-- ================= BODY ================= -->
+<section class="contact-body">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Info column -->
+      <aside class="contact-info" appReveal>
+        <h2>Reach Us Directly</h2>
+        <p class="contact-info__lead">
+          Prefer to speak with someone? Use any of the channels below and our team will follow
+          up promptly.
+        </p>
+
+        <ul class="contact-info__list">
+          @for (item of contactInfo; track item.label) {
+            <li>
+              <span class="contact-info__icon">
+                <i [class]="item.icon"></i>
+              </span>
+              <div>
+                <span class="contact-info__label">{{ item.label }}</span>
+                @if (item.href) {
+                  <a [href]="item.href" target="_blank" rel="noopener noreferrer">{{
+                    item.value
+                  }}</a>
+                } @else {
+                  <span class="contact-info__value">{{ item.value }}</span>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+
+        <div class="contact-map">
+          <iframe
+            title="New Giza University campus map"
+            src="https://www.google.com/maps?q=New+Giza+University&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </aside>
+
+      <!-- Form column -->
+      <div class="contact-form-card" appReveal [revealDelay]="100">
+        @if (submitted()) {
+          <div class="contact-success">
+            <div class="contact-success__icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Message sent</h3>
+            <p>
+              Thank you for reaching out. A member of our team will get back to you within one
+              business day.
+            </p>
+            <button type="button" class="ngu-btn ngu-btn--outline-dark" (click)="sendAnother()">
+              Send another message
+            </button>
+          </div>
+        } @else {
+          <h2>Send Us a Message</h2>
+          <p class="contact-form-card__lead">Fill in the form and we'll be in touch shortly.</p>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="contact-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Full Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Jane Doe"
+                  [class.is-invalid]="f.name.invalid && f.name.touched"
+                />
+                @if (f.name.invalid && f.name.touched) {
+                  <span class="form-error">Please enter your full name.</span>
+                }
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="you@example.com"
+                  [class.is-invalid]="f.email.invalid && f.email.touched"
+                />
+                @if (f.email.invalid && f.email.touched) {
+                  <span class="form-error">Please enter a valid email address.</span>
+                }
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="department">Department</label>
+              <select id="department" formControlName="department">
+                @for (dept of departments; track dept) {
+                  <option [value]="dept">{{ dept }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                rows="5"
+                formControlName="message"
+                placeholder="How can we help?"
+                [class.is-invalid]="f.message.invalid && f.message.touched"
+              ></textarea>
+              @if (f.message.invalid && f.message.touched) {
+                <span class="form-error">Message should be at least 10 characters.</span>
+              }
+            </div>
+
+            <button type="submit" class="ngu-btn ngu-btn--primary" [disabled]="submitting()">
+              @if (submitting()) {
+                <span class="btn-spinner" aria-hidden="true"></span>
+                Sending&hellip;
+              } @else {
+                Send Message <i class="fa-solid fa-paper-plane"></i>
+              }
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

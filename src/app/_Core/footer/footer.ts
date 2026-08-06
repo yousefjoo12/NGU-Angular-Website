@@ -32,4 +32,13 @@ export class FooterComponent implements OnInit {
       },
     });
   }
+
+  /** Strips the redundant "School of " prefix for a tidier footer list. */
+  shortSchoolName(name: string): string {
+    return name?.replace('School of ', '') ?? '';
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

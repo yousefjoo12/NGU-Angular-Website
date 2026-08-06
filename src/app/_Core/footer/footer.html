@@ -9,7 +9,7 @@
           rel="noopener noreferrer"
           aria-label="Facebook"
         >
-          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
         </a>
         <a
           href="https://x.com/NGUegypt"
@@ -17,7 +17,7 @@
           rel="noopener noreferrer"
           aria-label="X (Twitter)"
         >
-          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-x-twitter" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.instagram.com/newgizauniversity"
@@ -25,7 +25,7 @@
           rel="noopener noreferrer"
           aria-label="Instagram"
         >
-          <i class="fab fa-instagram"></i>
+          <i class="fab fa-instagram" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.linkedin.com/school/newgiza-university---ngu"
@@ -33,7 +33,7 @@
           rel="noopener noreferrer"
           aria-label="LinkedIn"
         >
-          <i class="fab fa-linkedin-in"></i>
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.youtube.com/@newgizauniversity"
@@ -41,7 +41,7 @@
           rel="noopener noreferrer"
           aria-label="YouTube"
         >
-          <i class="fab fa-youtube"></i>
+          <i class="fab fa-youtube" aria-hidden="true"></i>
         </a>
       </div>
     </div>
@@ -60,7 +60,7 @@
             @for (school of schools(); track school.id) {
               <li>
                 <a [routerLink]="['/school', school.id]">
-                  {{ school.school_Name.replace('School of ', '') }}
+                  {{ shortSchoolName(school.school_Name) }}
                 </a>
               </li>
             } @empty {
@@ -117,6 +117,15 @@
       />
 
       <p>© {{ currentYear }} New Giza University</p>
+
+      <button
+        type="button"
+        class="back-to-top"
+        (click)="scrollToTop()"
+        aria-label="Back to top"
+      >
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </footer>

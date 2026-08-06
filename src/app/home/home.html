@@ -1,24 +1,189 @@
-<div class="container py-5">
-  <div class="row g-4">
-    <div class="col-lg-4 col-md-6" *ngFor="let school of schools">
-      <div class="card school-card h-100 shadow-sm">
-        <img
-          [src]="school.imageCoverURL"
-          [alt]="school.school_Name"
-          class="card-img-top school-image"
-        />
-        <div class="card-body d-flex flex-column">
-          <h4 class="card-title fw-bold">
-            {{ school.school_Name }}
-          </h4>
-
-          <p class="card-text text-muted flex-grow-1">
-            {{ school.school_Desc }}
-          </p>
-
-          <button class="btn btn-primary mt-auto">Read More</button>
-        </div>
-      </div>
+<!-- ================= HERO ================= -->
+<section class="home-hero">
+  <div class="home-hero__media" aria-hidden="true"></div>
+  <div class="container home-hero__inner">
+    <p class="ngu-eyebrow home-hero__eyebrow">New Giza University</p>
+    <h1 class="home-hero__title">
+      Shaping tomorrow's<br />
+      leaders, today.
+    </h1>
+    <p class="home-hero__lead">
+      A premium liberal-arts education rooted in Egypt, built for a global future. Explore schools,
+      faculty, and a campus community defined by ambition.
+    </p>
+    <div class="home-hero__actions">
+      <a routerLink="/academics" class="ngu-btn ngu-btn--gold">
+        Explore Academics <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a routerLink="/about" class="ngu-btn ngu-btn--outline"> About NGU </a>
     </div>
   </div>
-</div>
+
+  <div class="home-hero__scroll" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats-band" appReveal>
+  <div class="container stats-band__grid">
+    @for (stat of stats; track stat.label) {
+      <div class="stat">
+        <span class="stat-number" appCountUp [countTo]="stat.value" [suffix]="stat.suffix">0</span>
+        <span class="stat-label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ================= WHY NGU ================= -->
+<section class="pillars-section">
+  <div class="container">
+    <div class="section-heading" appReveal>
+      <p class="ngu-eyebrow">Why NGU</p>
+      <h2 class="ngu-section-title">An education built with intention</h2>
+      <p class="section-subtitle">
+        Every school, course, and campus space at NGU is designed around one goal &mdash; preparing
+        graduates who lead with confidence.
+      </p>
+    </div>
+
+    <div class="pillars-grid">
+      @for (pillar of pillars; track pillar.title; let i = $index) {
+        <article class="pillar-card" appReveal [revealDelay]="i * 90">
+          <div class="pillar-card__icon">
+            <i [class]="pillar.icon"></i>
+          </div>
+          <h3>{{ pillar.title }}</h3>
+          <p>{{ pillar.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCHOOLS ================= -->
+<section class="schools-section">
+  <div class="container">
+    <div class="section-heading section-heading--split" appReveal>
+      <div>
+        <p class="ngu-eyebrow">Academics</p>
+        <h2 class="ngu-section-title">Our Schools</h2>
+      </div>
+      <a routerLink="/academics" class="section-heading__link">
+        View all schools <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    @if (loadingSchools()) {
+      <div class="state-panel">
+        <div class="spinner" role="status" aria-label="Loading"></div>
+        <p>Loading schools&hellip;</p>
+      </div>
+    } @else if (schoolsError()) {
+      <div class="state-panel">
+        <p>We couldn't load the schools right now. Please try again shortly.</p>
+      </div>
+    } @else {
+      <div class="row g-4">
+        @for (school of schools(); track trackBySchoolId($index, school); let i = $index) {
+          <div class="col-md-6 col-lg-4" appReveal [revealDelay]="i * 70">
+            <a [routerLink]="['/school', school.id]" class="school-tile">
+              <div class="school-tile__image">
+                @if (school.schoolImage) {
+                  <img [src]="school.schoolImage" [alt]="school.schoolImage" loading="lazy" />
+                } @else {
+                  <div class="school-tile__placeholder">
+                    <i class="fa-solid fa-building-columns"></i>
+                  </div>
+                }
+              </div>
+              <div class="school-tile__body">
+                <h3>{{ school.school_Name }}</h3>
+                <p>{{ school.school_Desc }}</p>
+                <span class="school-tile__cta">
+                  Learn more <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+        } @empty {
+          <div class="state-panel col-12">
+            <p>Schools will appear here once published.</p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-heading" appReveal>
+      <p class="ngu-eyebrow">Our Journey</p>
+      <h2 class="ngu-section-title">A story of steady ambition</h2>
+    </div>
+
+    <div class="timeline">
+      @for (step of timeline; track step.title; let i = $index) {
+        <div class="timeline-item" appReveal [revealDelay]="i * 100">
+          <div class="timeline-item__marker">
+            <span class="timeline-item__year">{{ step.year }}</span>
+          </div>
+          <div class="timeline-item__body">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section class="news-section">
+  <div class="container">
+    <div class="section-heading" appReveal>
+      <p class="ngu-eyebrow">News &amp; Events</p>
+      <h2 class="ngu-section-title">What's happening at NGU</h2>
+    </div>
+
+    <div class="news-grid">
+      @for (item of news; track item.title; let i = $index) {
+        <article class="news-card" appReveal [revealDelay]="i * 90">
+          <div class="news-card__image">
+            <img [src]="item.image" [alt]="item.title" loading="lazy" />
+            <span class="news-card__category">{{ item.category }}</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">{{ item.date }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.excerpt }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<!-- <section class="cta-section" appReveal>
+  <div class="container cta-section__inner">
+    <div>
+      <p class="ngu-eyebrow">Admissions Open</p>
+      <h2>Your journey at NGU starts with a single application.</h2>
+    </div>
+    <div class="cta-section__actions">
+      <a
+        href="https://selfservice.ngu.edu.eg/ApplicationForm/ApplicationLogin.aspx"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ngu-btn ngu-btn--gold"
+      >
+        Apply Now
+      </a>
+      <a routerLink="/contact" class="ngu-btn ngu-btn--outline"> Contact Admissions </a>
+    </div>
+  </div>
+</section> -->

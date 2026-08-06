@@ -1,9 +1,24 @@
 @use './styles/variables' as *;
 
+/* ============================================================
+   GLOBAL RESET & BASE
+============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    background: $bg-light;
-    color: $text-dark;
+  font-family: $font-body;
+  background: $bg-cream;
+  color: $ink;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1,
@@ -12,13 +27,193 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+  font-family: $font-accent;
+  font-weight: 700;
+  color: $ink;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
 }
 
 button,
 .btn,
 .counter,
 .stat-number {
-    font-family: 'Montserrat', sans-serif;
+  font-family: $font-utility;
+}
+
+/* ============================================================
+   ACCESSIBILITY — visible keyboard focus everywhere
+============================================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgba($secondary, 0.55);
+  outline-offset: 3px;
+  border-radius: $radius-sm;
+}
+
+/* ============================================================
+   SELECTION & SCROLLBAR
+============================================================ */
+
+::selection {
+  background: $secondary;
+  color: $primary-darker;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-dark;
+}
+
+/* ============================================================
+   SHARED SECTION UTILITIES
+   Reused across Home / Contact / NotFound so every page speaks
+   the same visual language as About / Academics / School.
+============================================================ */
+
+.ngu-eyebrow {
+  display: inline-block;
+  color: $secondary;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.ngu-section-title {
+  font-family: $font-display;
+  color: $primary;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.2;
+}
+
+.ngu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all $duration-base $ease-out;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ngu-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ngu-btn--primary {
+  background: $primary;
+  color: $white;
+  box-shadow: $shadow-primary;
+}
+
+.ngu-btn--primary:hover:not(:disabled) {
+  background: $primary-dark;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba($primary, 0.3);
+}
+
+.ngu-btn--gold {
+  background: $secondary;
+  color: $primary-darker;
+}
+
+.ngu-btn--gold:hover:not(:disabled) {
+  background: $secondary-dark;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba($secondary, 0.35);
+}
+
+.ngu-btn--outline {
+  background: transparent;
+  border-color: rgba($white, 0.5);
+  color: $white;
+}
+
+.ngu-btn--outline:hover:not(:disabled) {
+  background: $white;
+  color: $primary;
+  border-color: $white;
+  transform: translateY(-3px);
+}
+
+.ngu-btn--outline-dark {
+  background: transparent;
+  border-color: $primary;
+  color: $primary;
+}
+
+.ngu-btn--outline-dark:hover:not(:disabled) {
+  background: $primary;
+  color: $white;
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   Paired with app-reveal directive. Elements start hidden and
+   settle into place once they enter the viewport. Respect
+   prefers-reduced-motion for accessibility.
+============================================================ */
+
+[appReveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s $ease-out,
+    transform 0.7s $ease-out;
+}
+
+[appReveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [appReveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
